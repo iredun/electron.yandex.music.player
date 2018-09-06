@@ -7,7 +7,7 @@ function notifiTrack(track) {
         {
             title: track.title,
             message: track.artists[0].title,
-            icon: 'icon.png', // Absolute path (doesn't work on balloons)
+            icon: __dirname + '/icon.png', // Absolute path (doesn't work on balloons)
             sound: true, // Only Notification Center or Windows Toasters
             wait: false // Wait with callback, until user action is taken against notification
         }

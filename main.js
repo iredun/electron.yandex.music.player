@@ -30,7 +30,7 @@ function showHide() {
 
 app.on('ready', function() {
 
-  tray = new Tray('icon.png');
+  tray = new Tray(__dirname +'/icon.png');
   const contextMenu = Menu.buildFromTemplate([
     {
       label: "Открыть",
@@ -40,21 +40,21 @@ app.on('ready', function() {
     },
     {
       label: "Назад",
-      icon: 'previous.png',
+      icon: __dirname + '/previous.png',
       click: (item, window, event) => {
         playerBack()
       }
     },
     {
       label: "Воcпроизвести/Пауза",
-      icon: 'play.png',
+      icon: __dirname + '/play.png',
       click: (item, window, event) => {
         playerPlayPause()
       }
     },
     {
       label: "Вперед",
-      icon: 'next.png',
+      icon: __dirname + '/next.png',
       click: (item, window, event) => {
         playerForward()
       }
@@ -78,7 +78,7 @@ app.on('ready', function() {
   })
 
   app.setAppUserModelId(appId)
-  mainWindow = new BrowserWindow({width: 1024, height: 768, icon: 'icon.png', show: false })
+  mainWindow = new BrowserWindow({width: 1024, height: 768, icon: __dirname + '/icon.png', show: false })
   mainWindow.loadURL('file://' + __dirname + '/index.html')
   mainWindow.setMenu(null)
   //mainWindow.webContents.openDevTools()

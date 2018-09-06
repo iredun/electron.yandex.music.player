@@ -4,7 +4,8 @@
   "description": "A player for Yandex.Music, based web browser",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "build": "electron-packager . ya.music.player --out=builds --ignore=node-modules/electron-*"
   },
   "repository": "https://github.com/iredun/electron.yandex.music.player.git",
   "keywords": [
@@ -18,7 +19,8 @@
   },
   "author": "IvanRedun",
   "devDependencies": {
-    "electron": "^2.0.8"
+    "electron": "^2.0.8",
+    "electron-packager": "^12.1.1"
   },
   "dependencies": {
     "electron-native-notification": "^1.2.1",
