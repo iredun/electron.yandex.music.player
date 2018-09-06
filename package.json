@@ -15,6 +15,6 @@
   ],
   "author": "GitHub",
   "devDependencies": {
-    "electron": "^2.0.0"
+    "electron": "^2.0.8"
   }
 }
