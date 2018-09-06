@@ -16,3 +16,8 @@ cd electron.yandex.music.player
 npm install
 npm start
 ```
+
+Для того что бы собрать исполняемый файл под свою систему
+```
+npm run build
+```
