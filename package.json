@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "build": "electron-packager . ya.music.player --out=builds --ignore=node-modules/electron-*"
+    "build": "electron-packager . ya.music.player --out=builds --ignore=node-modules/electron-* --icon=./icon.ico --overwrite"
   },
   "repository": "https://github.com/iredun/electron.yandex.music.player.git",
   "keywords": [
@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "electron-native-notification": "^1.2.1",
-    "node-notifier": "^5.2.1"
+    "node-notifier": "^5.2.1",
+    "npm": "^6.4.1"
   }
 }

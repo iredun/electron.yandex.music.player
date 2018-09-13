@@ -18,6 +18,10 @@ function playerForward() {
   mainWindow.webContents.send('player', 'forward')
 }
 
+function playerLike() {
+  mainWindow.webContents.send('player', 'like')
+}
+
 function showHide() {
   if (windowState) {
     mainWindow.hide()
@@ -33,7 +37,8 @@ app.on('ready', function() {
   tray = new Tray(__dirname +'/icon.png');
   const contextMenu = Menu.buildFromTemplate([
     {
-      label: "Открыть",
+      label: "Развернуть/Свернуть главное окно",
+      icon: __dirname + '/browser-window.png',
       click: (item, window, event) => {
         showHide();
       }
@@ -53,13 +58,24 @@ app.on('ready', function() {
       }
     },
     {
+      label: "Лайк/Дизлайк",
+      icon: __dirname + '/review.png',
+      click: (item, window, event) => {
+        playerLike()
+      }
+    },
+    {
       label: "Вперед",
       icon: __dirname + '/next.png',
       click: (item, window, event) => {
         playerForward()
       }
     },
-    {role: "quit"},
+    {
+      label: "Выход",
+      icon: __dirname + '/logout.png',
+      role: "quit"
+    },
   ])
   tray.setToolTip('Яндекс.Музыка')
   tray.setContextMenu(contextMenu)
@@ -76,13 +92,14 @@ app.on('ready', function() {
   globalShortcut.register('Shift+CommandOrControl+D', () => {
     playerForward()
   })
+  globalShortcut.register('Shift+CommandOrControl+C', () => {
+    playerLike()
+  })
 
   app.setAppUserModelId(appId)
   mainWindow = new BrowserWindow({width: 1024, height: 768, icon: __dirname + '/icon.png', show: false })
   mainWindow.loadURL('file://' + __dirname + '/index.html')
   mainWindow.setMenu(null)
-  //mainWindow.webContents.openDevTools()
-  //mainWindow.hide()
   mainWindow.on('minimize',function(event){
     event.preventDefault()
     mainWindow.hide()
