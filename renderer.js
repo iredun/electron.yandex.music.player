@@ -1,6 +1,6 @@
 const {ipcRenderer} = require('electron')
 const webview = document.querySelector('webview')
-const notifier = require('node-notifier');
+const notifier = require('node-notifier')
 
 function notifiTrack(track) {
     let like = track.liked ? '❤️' : '💔'
@@ -33,17 +33,23 @@ function getTrackInfo() {
     })
 }
 
+webview.addEventListener('dom-ready', function(){ 
+    webview.executeJavaScript('externalAPI.on(externalAPI.EVENT_TRACK, function() { window.sendToElectron(externalAPI.EVENT_TRACK) });')
+});
+
+webview.addEventListener('ipc-message', (event) => {
+    if (event.channel == 'track') {
+        getTrackInfo()
+    }
+})
 ipcRenderer.on('player', (event, arg) => {
     if (arg == 'play_pause') {
         webview.executeJavaScript('externalAPI.togglePause();')
-        getTrackInfo()
     }
     if (arg == 'back') {
-        getPrevTrackInfo()
         webview.executeJavaScript('externalAPI.prev();')        
     }
     if (arg == 'forward') {
-        getNextTrackInfo()
         webview.executeJavaScript('externalAPI.next();')        
     }
     if (arg == 'like') {
