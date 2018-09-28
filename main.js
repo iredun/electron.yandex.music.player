@@ -34,46 +34,46 @@ function showHide() {
 
 app.on('ready', function() {
 
-  tray = new Tray(__dirname +'/icon.png');
+  tray = new Tray(__dirname +'/images/icon.png');
   const contextMenu = Menu.buildFromTemplate([
     {
       label: "Развернуть/Свернуть главное окно",
-      icon: __dirname + '/browser-window.png',
+      icon: __dirname + '/images/browser-window.png',
       click: (item, window, event) => {
         showHide();
       }
     },
     {
       label: "Назад",
-      icon: __dirname + '/previous.png',
+      icon: __dirname + '/images/previous.png',
       click: (item, window, event) => {
         playerBack()
       }
     },
     {
       label: "Воcпроизвести/Пауза",
-      icon: __dirname + '/play.png',
+      icon: __dirname + '/images/play.png',
       click: (item, window, event) => {
         playerPlayPause()
       }
     },
     {
       label: "Лайк/Дизлайк",
-      icon: __dirname + '/review.png',
+      icon: __dirname + '/images/review.png',
       click: (item, window, event) => {
         playerLike()
       }
     },
     {
       label: "Вперед",
-      icon: __dirname + '/next.png',
+      icon: __dirname + '/images/next.png',
       click: (item, window, event) => {
         playerForward()
       }
     },
     {
       label: "Выход",
-      icon: __dirname + '/logout.png',
+      icon: __dirname + '/images/logout.png',
       role: "quit"
     },
   ])
@@ -97,11 +97,28 @@ app.on('ready', function() {
   })
 
   app.setAppUserModelId(appId)
-  mainWindow = new BrowserWindow({width: 1024, height: 768, icon: __dirname + '/icon.png', show: false })
+  mainWindow = new BrowserWindow({
+    width: 1024,
+    height: 768,
+    icon: __dirname + '/icon.png',
+    show: false,
+    webPreferences: {
+      nativeWindowOpen: true,
+      affinity: 'main-window'
+    }
+  })
   mainWindow.loadURL('file://' + __dirname + '/index.html')
   mainWindow.setMenu(null)
   mainWindow.on('minimize',function(event){
     event.preventDefault()
     mainWindow.hide()
+  });
+
+  mainWindow.webContents.on('new-window', function (e, url, frameName, disposition, options) {
+    options.webPreferences.affinity = 'main-window'
+  });
+
+  app.on('browser-window-created',function(e,window) {
+    window.setMenu(null);
   });
 });

@@ -5,7 +5,7 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "build": "electron-packager . ya.music.player --out=builds --ignore=node-modules/electron-* --icon=./icon.ico --overwrite"
+    "build": "electron-packager . ya.music.player --out=builds --ignore=node-modules/electron-* --icon=./images/icon.ico --overwrite"
   },
   "repository": "https://github.com/iredun/electron.yandex.music.player.git",
   "keywords": [

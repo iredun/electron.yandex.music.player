@@ -8,9 +8,9 @@ function notifiTrack(track) {
         {
             title: track.title + like,
             message: track.artists[0].title,
-            icon: __dirname + '/icon.png', // Absolute path (doesn't work on balloons)
-            sound: false, // Only Notification Center or Windows Toasters
-            wait: false // Wait with callback, until user action is taken against notification
+            icon: __dirname + '/images/icon.png',
+            sound: false,
+            wait: false
         }
     );
 }
