@@ -22,3 +22,12 @@ npm start
 ```
 npm run build
 ```
+
+Для сборки MSI установщика под Windows
+
+Установить [Wix toolkit v3](http://wixtoolset.org/releases/)
+
+Перед запуском сборки установщика, должен быть собран билд командой выше
+```
+npm run create-win-installer
+```
