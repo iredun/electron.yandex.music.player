@@ -96,6 +96,16 @@ app.on('ready', function() {
     playerLike()
   })
 
+  globalShortcut.register('MediaPreviousTrack', () => {
+    playerBack()
+  })
+  globalShortcut.register('MediaPlayPause', () => {
+    playerPlayPause()
+  })
+  globalShortcut.register('MediaNextTrack', () => {
+    playerForward()
+  })
+
   app.setAppUserModelId(appId)
   mainWindow = new BrowserWindow({
     width: 1024,
